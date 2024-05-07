@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innate Dojo</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .rainbow-text {
+            background-clip: text;
+            -webkit-background-clip: text; 
+            color: transparent;
+            background-image: repeating-linear-gradient(
+                to right,
+                rgb(190, 56, 56) 0%,
+                rgb(166, 71, 234) 23.12%,
+                blue 47.14%,
+                indigo 61.42%,
+                violet 81.71%,
+                rgb(190, 56, 56) 100%
+            );
+            background-size: 400%; /* Adjust for smoother transition */
+            animation: rainbow 6s ease-in-out infinite;
+        }
+
+        @keyframes rainbow {
+        from {
+            background-position: 0%;
+        }
+        to {
+            background-position: 200%;
+        }
+        }
+        .scrolling-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%; 
+        }
+
+        .scroll-content {
+            display: flex;
+            animation: scroll-left 20s linear infinite; /* Duration adjusted for smoother transition */
+            position: absolute;
+            width: calc(640px * 12); /* Adjust based on content count and width */
+        }
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-3840px); /* Total width of one full set of content */
+            }
+        }
+        iframe {
+            width: 640px; /* example width */
+            height: 360px; /* example height */
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-purple-300 font-sans">
+
+    <nav class="flex justify-between items-center p-5 bg-purple-900 text-white h-16">
+        <div class="logo text-lg font-bold">Innate Dojo</div>
+        <div class="flex space-x-4">
+            <a href="http://discord.com/invite/hEMqtDXCHA" target="_blank" class="hover:text-blue-400">
+                <i class="fab fa-discord fa-lg"></i>
+            </a>
+            <a href="https://youtube.com/@AIWithTarun" target="_blank" class="hover:text-red-400">
+                <i class="fab fa-youtube fa-lg"></i>
+            </a>
+            <button id="hamburger" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+
+    <header class="text-center p-3 h-screen flex flex-col justify-around">
+        <div>
+            <h1 class="text-8xl font-bold mb-10 rainbow-text p-15">Welcome to Innate Dojo</h1>
+            <p class="text-3xl mt-8 p-10">A place to laugh out and learn AI, Open Source, and all about Tech</p>
+        </div>
+        <div>
+            <h2 class="text-5xl font-bold text-purple-300 mb-10 rainbow-text p-10">Be part of us</h2>
+            <div class="flex flex-col md:flex-row justify-around items-center">
+                <a href="http://discord.com/invite/hEMqtDXCHA" class="btn bg-purple-700 hover:bg-purple-800 text-white py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-110">Discord: 300+</a>
+                <a href="http://youtube.com/channel/UC3Dj8QszceMOc87RZWj4W9Q?sub_confirmation=1" class="btn bg-purple-700 hover:bg-purple-800 text-white py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-110">YouTube: 1.25K+</a>
+                <a href="https://tarunjain.gumroad.com/l/rdnin" class="btn bg-purple-700 hover:bg-purple-800 text-white py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-110">Newsletter: 1K+</a>
+                <a href="http://youtube.com/@AIwithTarun/streams" class="btn bg-purple-700 hover:bg-purple-800 text-white py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-110">Talks: 20+</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-black text-white p-10 mb-8">
+        <div class="container mx-auto">
+            <h2 class="text-5xl font-bold text-purple-300 mb-10 flex flex-col items-center justify-center">Upcoming Events</h2>
+            <div id="eventsContainer" class="grid md:grid-cols-3 gap-4">
+                <!-- Event cards will be inserted here through JavaScript -->
+            </div>
+            <div class="flex justify-center space-x-4 mt-8">
+                <button id="loadLess" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-8 rounded" style="display: none;">
+                    Load Less
+                </button>
+                <button id="loadMore" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-8 rounded">
+                    Load More
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="h-svh flex flex-col items-center justify-center bg-black pb-2 mt-6">
+        <div class="text-center mb-4">
+            <h2 class="text-5xl font-bold text-purple-300 mb-10 rainbow-text">Resources</h2>
+            <p class="text-3xl mt-8 mb-8 ">"Build. Learn. Share. Upskill."</p>
+            <p class="text-lg m-10 p-10">The essence of a dynamic learning community dedicated to continuous growth and knowledge sharing. By building practical skills, engaging in lifelong learning, sharing insights with peers, and consistently upskilling, members of this community are equipped to thrive in an ever-evolving professional landscape.</p>
+        </div>
+        <div class="scrolling-wrapper">
+            <div class="scroll-content">
+                <iframe src="https://www.youtube.com/embed/dUkiQ_WI92c"></iframe>
+                <iframe src="https://www.youtube.com/embed/qQwiAOQfILY"></iframe>
+                <iframe src="https://www.youtube.com/embed/xw7t_LAqV7E"></iframe>
+                <iframe src="https://www.youtube.com/embed/kSVGpbqYLYs"></iframe>
+                <iframe src="https://www.youtube.com/embed/frMdOL8knqg"></iframe>
+                <iframe src="https://www.youtube.com/embed/qkl2e6VT1aE"></iframe>
+                <iframe src="https://www.youtube.com/embed/lxMZSweBYPw"></iframe>
+
+                <iframe src="https://www.youtube.com/embed/dUkiQ_WI92c"></iframe>
+                <iframe src="https://www.youtube.com/embed/qQwiAOQfILY"></iframe>
+                <iframe src="https://www.youtube.com/embed/xw7t_LAqV7E"></iframe>
+                <iframe src="https://www.youtube.com/embed/kSVGpbqYLYs"></iframe>
+                <iframe src="https://www.youtube.com/embed/frMdOL8knqg"></iframe>
+                <iframe src="https://www.youtube.com/embed/qkl2e6VT1aE"></iframe>
+                <iframe src="https://www.youtube.com/embed/lxMZSweBYPw"></iframe>
+            </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="h-4/5 text-center p-20 bg-purple-900 text-white mt-0">
+        <div class="flex justify-center space-x-4">
+            <a href="https://twitter.com/TRJ_0751" target="_blank" class="hover:text-purple-450">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com/aiwithtarun.ai" target="_blank" class="hover:text-purple-450">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://youtube.com/@AIWithTarun" target="_blank" class="hover:text-red-450">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        Follow us on social media!
+    </footer>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const events = [
+            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "AI Conference 2024", date: "March 20, 2024, at 10:00 AM" },
+            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Open Source Summit", date: "April 05, 2024, at 11:00 AM" },
+            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Tech Roast 2024", date: "May 15, 2024, at 09:00 AM" },
+            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Innovation Hackathon", date: "June 10, 2024, at 09:00 AM" },
+            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Web Dev Con 2024", date: "July 22, 2024, at 09:00 AM" },
+            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "AI Ethics Panel", date: "August 30, 2024, at 10:00 AM" },
+            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Blockchain Basics", date: "September 18, 2024, at 11:00 AM" },
+            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Cybersecurity Summit", date: "October 05, 2024, at 10:00 AM" }
+        ];
+        let currentIndex = 3;
+
+    function displayEvents(limit) {
+        const container = document.getElementById('eventsContainer');
+        container.innerHTML = ''; // Clear existing cards
+        events.slice(0, limit).forEach(event => {
+            container.innerHTML += `
+                <div class="event-card bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                    <img src="${event.imgSrc}" alt="${event.title}" class="rounded-lg mb-4">
+                    <h3 class="text-xl font-bold">${event.title}</h3>
+                    <p class="text-gray-400">${event.date}</p>
+                    <button class="mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+                        Register
+                    </button>
+                </div>
+            `;
+        });
+        document.getElementById('loadLess').style.display = currentIndex > 3 ? 'inline-block' : 'none';
+        document.getElementById('loadMore').style.display = currentIndex < events.length ? 'inline-block' : 'none';
+    }
+
+    displayEvents(currentIndex); // Initially display 3 events
+
+    document.getElementById('loadMore').addEventListener('click', () => {
+        currentIndex += 5; // Load 5 more events
+        currentIndex = Math.min(currentIndex, events.length); // Ensure it does not exceed the length
+        displayEvents(currentIndex);
+    });
+
+    document.getElementById('loadLess').addEventListener('click', () => {
+        currentIndex -= 5; // Load 5 fewer events
+        currentIndex = Math.max(currentIndex, 3); // Ensure it does not go below initial count
+        displayEvents(currentIndex);
+    });
+});
+</script>
+    
+</html>
