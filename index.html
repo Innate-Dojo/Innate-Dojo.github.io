@@ -26,13 +26,14 @@
         }
 
         @keyframes rainbow {
-        from {
-            background-position: 0%;
+            from {
+                background-position: 0%;
+            }
+            to {
+                background-position: 200%;
+            }
         }
-        to {
-            background-position: 200%;
-        }
-        }
+
         .scrolling-wrapper {
             overflow: hidden;
             position: relative;
@@ -46,6 +47,7 @@
             position: absolute;
             width: calc(640px * 12); /* Adjust based on content count and width */
         }
+
         @keyframes scroll-left {
             0% {
                 transform: translateX(0);
@@ -54,6 +56,7 @@
                 transform: translateX(-3840px); /* Total width of one full set of content */
             }
         }
+
         iframe {
             width: 640px; /* example width */
             height: 360px; /* example height */
@@ -80,7 +83,6 @@
             </button>
         </div>
     </nav>
-
 
     <header class="text-center p-3 h-screen flex flex-col justify-around">
         <div>
@@ -114,11 +116,28 @@
             </div>
         </div>
     </section>
+
+    <section class="bg-black text-white p-10 mb-8">
+        <div class="container mx-auto">
+            <h2 class="text-5xl font-bold text-purple-300 mb-10 flex flex-col items-center justify-center">Past Events</h2>
+            <div id="pastEventsContainer" class="grid md:grid-cols-3 gap-4">
+                <!-- Past event cards will be inserted here through JavaScript -->
+            </div>
+            <div class="flex justify-center space-x-4 mt-8">
+                <button id="loadLessPast" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-8 rounded" style="display: none;">
+                    Load Less
+                </button>
+                <button id="loadMorePast" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-8 rounded">
+                    Load More
+                </button>
+            </div>
+        </div>
+    </section>
     
     <section class="h-svh flex flex-col items-center justify-center bg-black pb-2 mt-6">
         <div class="text-center mb-4">
             <h2 class="text-5xl font-bold text-purple-300 mb-10 rainbow-text">Resources</h2>
-            <p class="text-3xl mt-8 mb-8 ">"Build. Learn. Share. Upskill."</p>
+            <p class="text-3xl mt-8 mb-8">"Build. Learn. Share. Upskill."</p>
             <p class="text-lg m-10 p-10">The essence of a dynamic learning community dedicated to continuous growth and knowledge sharing. By building practical skills, engaging in lifelong learning, sharing insights with peers, and consistently upskilling, members of this community are equipped to thrive in an ever-evolving professional landscape.</p>
         </div>
         <div class="scrolling-wrapper">
@@ -139,11 +158,10 @@
                 <iframe src="https://www.youtube.com/embed/qkl2e6VT1aE"></iframe>
                 <iframe src="https://www.youtube.com/embed/lxMZSweBYPw"></iframe>
             </div>
-            </div>
         </div>
     </section>
     
-    <footer class="h-4/5 text-center p-20 bg-purple-900 text-white mt-0">
+    <footer class="text-center p-20 bg-purple-900 text-white mt-0">
         <div class="flex justify-center space-x-4">
             <a href="https://twitter.com/TRJ_0751" target="_blank" class="hover:text-purple-450">
                 <i class="fab fa-twitter"></i>
@@ -157,54 +175,81 @@
         </div>
         Follow us on social media!
     </footer>
-</body>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const events = [
-            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "AI Conference 2024", date: "March 20, 2024, at 10:00 AM" },
-            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Open Source Summit", date: "April 05, 2024, at 11:00 AM" },
-            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Tech Roast 2024", date: "May 15, 2024, at 09:00 AM" },
-            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Innovation Hackathon", date: "June 10, 2024, at 09:00 AM" },
-            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Web Dev Con 2024", date: "July 22, 2024, at 09:00 AM" },
-            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "AI Ethics Panel", date: "August 30, 2024, at 10:00 AM" },
-            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Blockchain Basics", date: "September 18, 2024, at 11:00 AM" },
-            { imgSrc: "https://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/s3/field/field_image_main/shutterstock_1175616652.jpg", title: "Cybersecurity Summit", date: "October 05, 2024, at 10:00 AM" }
-        ];
-        let currentIndex = 3;
 
-    function displayEvents(limit) {
-        const container = document.getElementById('eventsContainer');
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const events = [
+        { imgSrc: "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,quality=75,width=400,height=400/event-covers/u4/50d02b5d-0489-477e-a4dc-c6f551b21356", title: "A break from AI AI AI...", date: "TBD",link:"https://lu.ma/o57c5xhy"},
+        ];
+
+    const pastEvents = [
+            { imgSrc: "./assets/cmr.jpeg", title: "Guest lecture - CMR Institute of Technology", date: "6th June 2024","link":""},
+            { imgSrc: "./assets/nmit.JPG", title: "NMIT Hackathons- Mentor", date: "24-26th May 2024",link:""},
+        ];
+
+        let currentIndex = 3;
+    let currentPastIndex = 3;
+
+    function displayEvents(containerId, eventsArray, limit, buttonText) {
+        const container = document.getElementById(containerId);
         container.innerHTML = ''; // Clear existing cards
-        events.slice(0, limit).forEach(event => {
+        eventsArray.slice(0, limit).forEach(event => {
             container.innerHTML += `
                 <div class="event-card bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                     <img src="${event.imgSrc}" alt="${event.title}" class="rounded-lg mb-4">
                     <h3 class="text-xl font-bold">${event.title}</h3>
                     <p class="text-gray-400">${event.date}</p>
-                    <button class="mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                        Register
-                    </button>
+                    <a href="${event.link}" target="_blank" rel="noopener noreferrer" class="block mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+                        ${buttonText}
+                    </a>
                 </div>
             `;
         });
-        document.getElementById('loadLess').style.display = currentIndex > 3 ? 'inline-block' : 'none';
-        document.getElementById('loadMore').style.display = currentIndex < events.length ? 'inline-block' : 'none';
     }
 
-    displayEvents(currentIndex); // Initially display 3 events
+    function updateButtons(loadMoreId, loadLessId, currentIndex, length) {
+        document.getElementById(loadLessId).style.display = currentIndex > 3 ? 'inline-block' : 'none';
+        document.getElementById(loadMoreId).style.display = currentIndex < length ? 'inline-block' : 'none';
+    }
 
+    // Initial display of events
+    displayEvents('eventsContainer', events, currentIndex, 'Register');
+    displayEvents('pastEventsContainer', pastEvents, currentPastIndex, 'Visit');
+
+    // Load more/less functionality for upcoming events
     document.getElementById('loadMore').addEventListener('click', () => {
         currentIndex += 5; // Load 5 more events
         currentIndex = Math.min(currentIndex, events.length); // Ensure it does not exceed the length
-        displayEvents(currentIndex);
+        displayEvents('eventsContainer', events, currentIndex, 'Register');
+        updateButtons('loadMore', 'loadLess', currentIndex, events.length);
     });
 
     document.getElementById('loadLess').addEventListener('click', () => {
         currentIndex -= 5; // Load 5 fewer events
         currentIndex = Math.max(currentIndex, 3); // Ensure it does not go below initial count
-        displayEvents(currentIndex);
+        displayEvents('eventsContainer', events, currentIndex, 'Register');
+        updateButtons('loadMore', 'loadLess', currentIndex, events.length);
     });
+
+    // Load more/less functionality for past events
+    document.getElementById('loadMorePast').addEventListener('click', () => {
+        currentPastIndex += 5; // Load 5 more events
+        currentPastIndex = Math.min(currentPastIndex, pastEvents.length); // Ensure it does not exceed the length
+        displayEvents('pastEventsContainer', pastEvents, currentPastIndex, 'Visit');
+        updateButtons('loadMorePast', 'loadLessPast', currentPastIndex, pastEvents.length);
+    });
+
+    document.getElementById('loadLessPast').addEventListener('click', () => {
+        currentPastIndex -= 5; // Load 5 fewer events
+        currentPastIndex = Math.max(currentPastIndex, 3); // Ensure it does not go below initial count
+        displayEvents('pastEventsContainer', pastEvents, currentPastIndex, 'Visit');
+        updateButtons('loadMorePast', 'loadLessPast', currentPastIndex, pastEvents.length);
+    });
+
+    // Update buttons on initial load
+    updateButtons('loadMore', 'loadLess', currentIndex, events.length);
+    updateButtons('loadMorePast', 'loadLessPast', currentPastIndex, pastEvents.length);
 });
-</script>
-    
+    </script>
+</body>
 </html>
